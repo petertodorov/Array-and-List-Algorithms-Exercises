@@ -1,0 +1,34 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+class SortArrayOfStrings
+{
+    static void Main(string[] args)
+    {
+        string[] input = Console.ReadLine().Split(' ').ToArray();
+        bool hasSwapped = true;
+        while (hasSwapped)
+        {
+            hasSwapped = false;
+            for (int i = 0; i < input.Length - 1; i++)
+            {
+                string compare = input[i];
+                string compareTwo = input[i+1];
+                int one = compare.CompareTo(compareTwo);
+                if (one==1)
+                {
+                    string tempWord = input[i];
+                    input[i]= input[i+1];
+                    input[i + 1] = tempWord;
+                    hasSwapped = true;
+                }
+            }
+        }
+        Console.WriteLine(String.Join(" ", input));
+    }
+}
+       
+
+
