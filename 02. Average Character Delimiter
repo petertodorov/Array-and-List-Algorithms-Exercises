@@ -1,0 +1,41 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+class AverageCharacterDelimiter
+{
+    static void Main(string[] args)
+    {
+        string[] input = Console.ReadLine().Split(' ').ToArray();
+        char[] letters = input.SelectMany(x => x.ToCharArray()).ToArray();
+        decimal sum = 0;
+        List<string> finalResult = new List<string>();
+
+        sum=Summing(letters, sum);
+        
+        decimal average  = Math.Floor(sum / letters.Length);
+        char upperLetter = Convert.ToChar(Convert.ToInt32(average));
+        string result = Convert.ToString(upperLetter);
+        result = result.ToUpper();
+        for (int i = 0; i < input.Length; i++)
+        {
+            string temp = input[i] + result;
+            if (i == input.Length - 1)
+            {
+                temp = input[i];
+            }
+            finalResult.Add(temp);
+        }
+        Console.WriteLine(string.Join("", finalResult));
+    }
+
+    private static decimal Summing(char[] letters, decimal sum)
+    {
+        for (int i = 0; i < letters.Length; i++)
+        {
+            sum += Convert.ToInt32(letters[i]);
+        }
+        return sum;
+    }
+}
