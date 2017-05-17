@@ -1,0 +1,44 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+class DecodeRadioFrequencies
+{
+    static void Main(string[] args)
+    {
+        string[] frec = Console.ReadLine().Split(' ').ToArray();
+        List<char> lefties = new List<char>();
+        List<char> righties = new List<char>();
+        for (int i = 0; i < frec.Length; i++)
+        {
+            int[] splitter = frec[i].Split('.').Select(int.Parse).ToArray();
+            if (splitter[0] != 0)
+            {
+                lefties.Add(Convert.ToChar(splitter[0]));
+            }
+            if (splitter[1] != 0)
+            {
+                righties.Add(Convert.ToChar(splitter[1]));
+            }
+        }
+        int size = lefties.Count + righties.Count;
+        char[] result = new char[size];
+        for (int i = 0; i < result.Length; i++)
+        {
+            if (i<lefties.Count)
+            {
+                result[i] = lefties[i];
+            }
+            else
+            {
+                result[i] = righties.Last();
+                righties.RemoveAt(righties.Count - 1);
+            }
+        }
+        Console.WriteLine(String.Join("",result ));
+    }
+}
+
+
+
